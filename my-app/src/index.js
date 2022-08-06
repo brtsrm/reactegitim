@@ -7,6 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"))
 function hello() {
     return "Merhaba"
 }
+
 class App2 extends React.Component {
     render() {
         return hello()
