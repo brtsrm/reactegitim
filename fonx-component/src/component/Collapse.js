@@ -3,37 +3,11 @@ import React from 'react'
 
 class Collapse extends React.Component {
 
-    constructor() {
+    state = { showContent: false, }
 
-        super();
-        this.state = {
-            showContent: false,
+    // unmoutabble
+    // in moutable
 
-        }
-
-
-        /* 1. Yöntem **** 
-        this.showMore = () =>  {
-            this.setState({
-                showContent: true
-            })
-        } */
-        /* 2. Yöntem ****
-            this.showMore = this.showMore.bind(this)
-        */
-
-    }
-
-    /*  2. Yöntem ****
-        showMore(){
-            this.setState({
-                showContent : true
-            })
-        } 
-    */
-
-
-    /* 3. Yöntem **** */
     showMore = () => {
         this.setState({
             showContent: !this.state.showContent,
@@ -41,12 +15,22 @@ class Collapse extends React.Component {
     }
 
 
+    componentDidMount() {
+        console.log("Yaşam başlatıldı")
+    }
+
+    componentDidUpdate() {
+        console.log("Component Güncesllenmesi yapıldı")
+    }
+
     render() {
 
         return (
             <div>
                 <button className="btn btn-primary w-100" onClick={this.showMore}>
-                    Göster
+
+                    {/* {this.props.children.props.cartTitle} */}
+                    {React.Children.map(this.props.children, children => children.props.cartTitle)}
                 </button>
 
                 {
