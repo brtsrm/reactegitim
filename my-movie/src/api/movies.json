@@ -1,0 +1,18 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "mErhaba",
+      "rating": 1.3,
+      "overview": "senaryo",
+      "placeholder": "https://via.placeholder.com/300.png/aaa/fff"
+    },
+    {
+      "id": 2,
+      "name": "MeR",
+      "rating": 3.3,
+      "overview": "senaryo",
+      "placeholder": "https://via.placeholder.com/300.png/aaa/fff"
+    }
+  ]
+}

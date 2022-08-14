@@ -6,23 +6,18 @@ import MovieList from './MovieList'
 class App extends React.Component {
 
     state = {
-        movies: [
-            {
-                "id": 1,
-                "name": "mErhaba",
-                "rating": 1.3,
-                "overview": "senaryo",
-                "placeholder": "https://via.placeholder.com/300.png/aaa/fff"
-            },
-            {
-                "id": 2,
-                "name": "MeR",
-                "rating": 3.3,
-                "overview": "senaryo",
-                "placeholder": "https://via.placeholder.com/300.png/aaa/fff"
-            }
-        ],
+        movies: [],
         searchQuery: ""
+    }
+
+    async componentDidMount() {
+        const baseURL = "http://localhost:3002/movies"
+        const response = await fetch(baseURL)
+        const data = await response.json()
+
+        this.setState({
+            movies : data
+        })
     }
 
     deleteMovie = (movie) => {
