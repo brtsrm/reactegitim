@@ -3,6 +3,9 @@ import SearchBar from './SearchBar'
 import MovieList from './MovieList'
 import axios from "axios";
 
+console.log(process.env)
+
+
 class App extends React.Component {
 
     state = {
@@ -21,14 +24,16 @@ class App extends React.Component {
                 movies : data
             })
         }*/
-    static BaseUrl = "http://localhost:3002/movies"
+
 
     async componentDidMount() {
-        const response = await axios.get(App.BaseUrl)
-        const data = response.data
+
+        const response = await axios.get(`https://api.themoviedb.org/3/list/8213922?api_key=${process.env.REACT_APP_API_KEY}`)
+        const data = response.data.items
+        console.log(data)
         this.setState({
             movies: data
-        })
+        });
     }
 
     /*
@@ -47,9 +52,8 @@ class App extends React.Component {
     }*/
 
     deleteMovie = async (movie) => {
-        const DeleteMovie = App.BaseUrl + `/${movie.id}`
-        await axios.delete(DeleteMovie)
-
+        const DeleteMovie = `https://api.themoviedb.org/3/list/8213922/remove_item?media_id=${movie.id}&session_id=${process.env.REACT_APP_API_SESSION_KEY}&api_key=${process.env.REACT_APP_API_KEY}`
+        await axios.post(DeleteMovie)
         const newMovieList = this.state.movies.filter(
             m => m.id !== movie.id
         )
@@ -69,7 +73,7 @@ class App extends React.Component {
     render() {
         let filterMovies = this.state.movies.filter(
             (movie) => {
-                return movie.name.toLowerCase().trim().indexOf(this.state.searchQuery.trim().toLowerCase()) !== -1
+                return movie.title.toLowerCase().trim().indexOf(this.state.searchQuery.trim().toLowerCase()) !== -1
             }
         )
         return (
