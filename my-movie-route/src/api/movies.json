@@ -1,0 +1,18 @@
+{
+  "movies": [
+    {
+      "id": 3,
+      "name": "MeR",
+      "rating": 13.3,
+      "overview": "senaryo",
+      "placeholder": "https://via.placeholder.com/300.png/aaa/fff"
+    },
+    {
+      "id": 4,
+      "name": "MeaR",
+      "rating": 32.3,
+      "overview": "senaryo",
+      "placeholder": "https://via.placeholder.com/300.png/aaa/fff"
+    }
+  ]
+}
