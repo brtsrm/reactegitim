@@ -2,16 +2,12 @@ import React from 'react'
 
 
 const MovieList = (props) => {
-    /*function handleClick(event) {
-        console.log(event.target)
-
-    }*/
 
     return (
         <div className='row'>
             {
-                props.movies.map((movie) => (
-                    <div className='col-md-4' key={movie.id}>
+                props.movies.map((movie,i) => (
+                    <div className='col-md-4' key={i}>
                         <div className='card mb-4 shadow-sm'>
                             <img src={movie.placeholder} className='card-img-top'
                                  alt="Sample Movie"/>

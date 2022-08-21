@@ -6,7 +6,7 @@ import axios from "axios";
 import {
     BrowserRouter,
     Routes,
-    Route,
+    Route, useNavigate,
 } from "react-router-dom";
 
 class App extends React.Component {
@@ -34,7 +34,6 @@ class App extends React.Component {
         //const response = await axios.get(`https://api.themoviedb.org/3/list/8213922?api_key=${process.env.REACT_APP_API_KEY}`)
         const response = await axios.get('http://localhost:3000/movies')
         const data = response.data
-        console.log(data)
         this.setState({
             movies: data
         });
@@ -86,6 +85,26 @@ class App extends React.Component {
         )
     }
 
+    addMovie = async (movie) => {
+        const responseNewMovieAdd = await axios.post("http://localhost:3000/movies/", movie)
+        if (responseNewMovieAdd.status === 201) {
+            this.setState({
+                movie: this.state.movies.concat([movie])
+            })
+            window.location.href = "/"
+        }
+    }
+
+    addMovieList = () => {
+        return (
+            <div>
+                <AddMovie onAddMovie={(movie) => {
+                    this.addMovie(movie)
+                }}/>
+            </div>
+        )
+    }
+
     render() {
         let filterMovies = this.state.movies.filter(
             (movie) => {
@@ -96,8 +115,8 @@ class App extends React.Component {
             <div className='container'>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" exact  element={this.Main(filterMovies)}/>
-                        <Route path="/add" element={<AddMovie/>}/>
+                        <Route path="/" exact element={this.Main(filterMovies)}/>
+                        <Route path="/add" element={this.addMovieList()}/>
                     </Routes>
                 </BrowserRouter>
             </div>
